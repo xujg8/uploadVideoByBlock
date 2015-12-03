@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tcl.mie.recipevideo.db.VideoUrlsMapper" >
+  <resultMap id="BaseResultMap" type="com.tcl.mie.recipevideo.model.VideoUrls" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="quality" property="quality" jdbcType="VARCHAR" />
+    <result column="mp" property="mp" jdbcType="TINYINT" />
+    <result column="hd" property="hd" jdbcType="TINYINT" />
+    <result column="ftype" property="ftype" jdbcType="VARCHAR" />
+    <result column="no" property="no" jdbcType="TINYINT" />
+    <result column="videoUrl" property="videourl" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, pid, quality, mp, hd, ftype, no, videoUrl, createTime, updateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_video_urls
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_video_urls
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tcl.mie.recipevideo.model.VideoUrls" >
+    insert into tb_video_urls (id, pid, quality, 
+      mp, hd, ftype, no, 
+      videoUrl, createTime, updateTime
+      )
+    values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{quality,jdbcType=VARCHAR}, 
+      #{mp,jdbcType=TINYINT}, #{hd,jdbcType=TINYINT}, #{ftype,jdbcType=VARCHAR}, #{no,jdbcType=TINYINT}, 
+      #{videourl,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tcl.mie.recipevideo.model.VideoUrls" >
+    insert into tb_video_urls
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="quality != null" >
+        quality,
+      </if>
+      <if test="mp != null" >
+        mp,
+      </if>
+      <if test="hd != null" >
+        hd,
+      </if>
+      <if test="ftype != null" >
+        ftype,
+      </if>
+      <if test="no != null" >
+        no,
+      </if>
+      <if test="videourl != null" >
+        videoUrl,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="quality != null" >
+        #{quality,jdbcType=VARCHAR},
+      </if>
+      <if test="mp != null" >
+        #{mp,jdbcType=TINYINT},
+      </if>
+      <if test="hd != null" >
+        #{hd,jdbcType=TINYINT},
+      </if>
+      <if test="ftype != null" >
+        #{ftype,jdbcType=VARCHAR},
+      </if>
+      <if test="no != null" >
+        #{no,jdbcType=TINYINT},
+      </if>
+      <if test="videourl != null" >
+        #{videourl,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tcl.mie.recipevideo.model.VideoUrls" >
+    update tb_video_urls
+    <set >
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="quality != null" >
+        quality = #{quality,jdbcType=VARCHAR},
+      </if>
+      <if test="mp != null" >
+        mp = #{mp,jdbcType=TINYINT},
+      </if>
+      <if test="hd != null" >
+        hd = #{hd,jdbcType=TINYINT},
+      </if>
+      <if test="ftype != null" >
+        ftype = #{ftype,jdbcType=VARCHAR},
+      </if>
+      <if test="no != null" >
+        no = #{no,jdbcType=TINYINT},
+      </if>
+      <if test="videourl != null" >
+        videoUrl = #{videourl,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tcl.mie.recipevideo.model.VideoUrls" >
+    update tb_video_urls
+    set pid = #{pid,jdbcType=INTEGER},
+      quality = #{quality,jdbcType=VARCHAR},
+      mp = #{mp,jdbcType=TINYINT},
+      hd = #{hd,jdbcType=TINYINT},
+      ftype = #{ftype,jdbcType=VARCHAR},
+      no = #{no,jdbcType=TINYINT},
+      videoUrl = #{videourl,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

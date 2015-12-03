@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tcl.mie.recipevideo.db.VideoMapper" >
+  <resultMap id="BaseResultMap" type="com.tcl.mie.recipevideo.model.Video" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="picUrl" property="picurl" jdbcType="VARCHAR" />
+    <result column="tags" property="tags" jdbcType="VARCHAR" />
+    <result column="duration" property="duration" jdbcType="TIME" />
+    <result column="ingredients" property="ingredients" jdbcType="VARCHAR" />
+    <result column="source" property="source" jdbcType="VARCHAR" />
+    <result column="sourceUrl" property="sourceurl" jdbcType="VARCHAR" />
+    <result column="md5url" property="md5url" jdbcType="VARCHAR" />
+    <result column="site" property="site" jdbcType="VARCHAR" />
+    <result column="vid" property="vid" jdbcType="VARCHAR" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.tcl.mie.recipevideo.model.Video" extends="BaseResultMap" >
+    <result column="description" property="description" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, picUrl, tags, duration, ingredients, source, sourceUrl, md5url, site, vid, 
+    account, status, createTime, updateTime
+  </sql>
+  <sql id="Blob_Column_List" >
+    description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_video
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_video
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tcl.mie.recipevideo.model.Video" >
+    insert into tb_video (id, name, picUrl, 
+      tags, duration, ingredients, 
+      source, sourceUrl, md5url, 
+      site, vid, account, 
+      status, createTime, updateTime, 
+      description)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{picurl,jdbcType=VARCHAR}, 
+      #{tags,jdbcType=VARCHAR}, #{duration,jdbcType=TIME}, #{ingredients,jdbcType=VARCHAR}, 
+      #{source,jdbcType=VARCHAR}, #{sourceurl,jdbcType=VARCHAR}, #{md5url,jdbcType=VARCHAR}, 
+      #{site,jdbcType=VARCHAR}, #{vid,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
+      #{status,jdbcType=TINYINT}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{description,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tcl.mie.recipevideo.model.Video" >
+    insert into tb_video
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="picurl != null" >
+        picUrl,
+      </if>
+      <if test="tags != null" >
+        tags,
+      </if>
+      <if test="duration != null" >
+        duration,
+      </if>
+      <if test="ingredients != null" >
+        ingredients,
+      </if>
+      <if test="source != null" >
+        source,
+      </if>
+      <if test="sourceurl != null" >
+        sourceUrl,
+      </if>
+      <if test="md5url != null" >
+        md5url,
+      </if>
+      <if test="site != null" >
+        site,
+      </if>
+      <if test="vid != null" >
+        vid,
+      </if>
+      <if test="account != null" >
+        account,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="picurl != null" >
+        #{picurl,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null" >
+        #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null" >
+        #{duration,jdbcType=TIME},
+      </if>
+      <if test="ingredients != null" >
+        #{ingredients,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceurl != null" >
+        #{sourceurl,jdbcType=VARCHAR},
+      </if>
+      <if test="md5url != null" >
+        #{md5url,jdbcType=VARCHAR},
+      </if>
+      <if test="site != null" >
+        #{site,jdbcType=VARCHAR},
+      </if>
+      <if test="vid != null" >
+        #{vid,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tcl.mie.recipevideo.model.Video" >
+    update tb_video
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="picurl != null" >
+        picUrl = #{picurl,jdbcType=VARCHAR},
+      </if>
+      <if test="tags != null" >
+        tags = #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null" >
+        duration = #{duration,jdbcType=TIME},
+      </if>
+      <if test="ingredients != null" >
+        ingredients = #{ingredients,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        source = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceurl != null" >
+        sourceUrl = #{sourceurl,jdbcType=VARCHAR},
+      </if>
+      <if test="md5url != null" >
+        md5url = #{md5url,jdbcType=VARCHAR},
+      </if>
+      <if test="site != null" >
+        site = #{site,jdbcType=VARCHAR},
+      </if>
+      <if test="vid != null" >
+        vid = #{vid,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.tcl.mie.recipevideo.model.Video" >
+    update tb_video
+    set name = #{name,jdbcType=VARCHAR},
+      picUrl = #{picurl,jdbcType=VARCHAR},
+      tags = #{tags,jdbcType=VARCHAR},
+      duration = #{duration,jdbcType=TIME},
+      ingredients = #{ingredients,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      sourceUrl = #{sourceurl,jdbcType=VARCHAR},
+      md5url = #{md5url,jdbcType=VARCHAR},
+      site = #{site,jdbcType=VARCHAR},
+      vid = #{vid,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tcl.mie.recipevideo.model.Video" >
+    update tb_video
+    set name = #{name,jdbcType=VARCHAR},
+      picUrl = #{picurl,jdbcType=VARCHAR},
+      tags = #{tags,jdbcType=VARCHAR},
+      duration = #{duration,jdbcType=TIME},
+      ingredients = #{ingredients,jdbcType=VARCHAR},
+      source = #{source,jdbcType=VARCHAR},
+      sourceUrl = #{sourceurl,jdbcType=VARCHAR},
+      md5url = #{md5url,jdbcType=VARCHAR},
+      site = #{site,jdbcType=VARCHAR},
+      vid = #{vid,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
